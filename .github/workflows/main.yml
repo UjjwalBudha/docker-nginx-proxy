@@ -33,7 +33,7 @@ jobs:
               run: |
                 sudo apt update
                 sudo snap install ngrok
-                ngrok authtoken ${{ secrets.ngrok_token }}
+                sudo ngrok authtoken ${{ secrets.ngrok_token }}
       
             - name: Start ngrok Tunnel
               run: |
