@@ -36,10 +36,9 @@ jobs:
                 # sudo ngrok authtoken "${{ secrets.ngrok_token }}"
                 ngrok authtoken "3NN5FPD2nLwiumBBUxRaQ_85W99134YGAKdAuHJkWkr"
       
-            - name: Start ngrok Tunnel
-              run: |
-                ngrok http 8081 &
-                ngrok tunnels
-
             - name: Run Docker-Compose
               run: docker-compose up -d
+
+            - name: Start ngrok Tunnel
+              run: |
+                ngrok http 8081
