@@ -32,12 +32,9 @@ jobs:
             - name: Install ngrok
               run: |
                 sudo apt update
-                sudo apt upgrade nginx
-                sudo apt install unzip
-                wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-                unzip ngrok-stable-linux-amd64.zip
-                ngrok update -y
-                ./ngrok authtoken ${{ secrets.ngrok_token }}
+                snap install ngrok
+                ngrok config add-authtoken ${{ secrets.ngrok_token }}
+                # ngrok authtoken ${{ secrets.ngrok_token }}
       
             - name: Start ngrok Tunnel
               run: |
