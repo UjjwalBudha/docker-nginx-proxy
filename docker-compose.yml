@@ -1,0 +1,20 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    ports: 
+      - "3000:3000"
+    networks:
+      - test-networks
+
+  frontend:
+    build: ./nginx
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+    networks:
+      - test-networks
+
+networks:
+  test-networks:
