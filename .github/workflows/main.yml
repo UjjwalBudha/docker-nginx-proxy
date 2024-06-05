@@ -29,6 +29,17 @@ jobs:
             - name: Login Docker
               run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ujwalbudha --password-stdin
 
+            - name: Install ngrok
+              run: |
+                sudo apt update
+                sudo apt install unzip
+                wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+                unzip ngrok-stable-linux-amd64.zip
+      
+            - name: Start ngrok Tunnel
+              run: |
+                ./ngrok http 8081 &
+
             - name: Run Docker-Compose
               run: docker-compose up -d
             
