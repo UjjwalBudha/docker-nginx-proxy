@@ -32,7 +32,7 @@ jobs:
             - name: Install ngrok
               run: |
                 sudo apt update
-                ngrok update
+                sudo apt upgrade nginx
                 sudo apt install unzip
                 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
                 unzip ngrok-stable-linux-amd64.zip
