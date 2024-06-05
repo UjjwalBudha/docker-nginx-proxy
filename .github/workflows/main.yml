@@ -1,0 +1,29 @@
+name: Deploying an app
+on:
+    workflow_dispatch:
+    push:
+        branches: [ "dev" ]
+jobs:
+    dev:
+        runs-on: ubuntu-latest
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+            DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+            AWS_DEFAULT_REGION: us-east-1
+        
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install Docker
+              run: |
+                sudo apt update 
+                sudo apt install docker
+
+            - name: Login Docker
+              run: docker login -u ujwalbudha -p "{{ DOCKER_ACCESS_TOKE }}"
+            
+            - name: Build docker image drom Dockerfile
+              run: docker build -t ujwalbudha/myrepo-001 .
