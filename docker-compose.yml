@@ -4,10 +4,17 @@ services:
     build: ./backend
     ports: 
       - "3000:3000"
+    networks:
+      - test-networks
 
-  nginx:
+  frontend:
     build: ./nginx
     ports:
       - "8081:80"
     depends_on:
       - backend
+    networks:
+      - test-networks
+
+networks:
+  test-networks:
