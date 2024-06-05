@@ -36,12 +36,7 @@ jobs:
                 sudo apt install unzip
                 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
                 unzip ngrok-stable-linux-amd64.zip
-                sudo mv ngrok /usr/local/bin/ngrok
                 ./ngrok authtoken ${{ secrets.ngrok_token }}
-
-            - name: Add execute permission to ngrok
-              run: |
-                sudo chmod +x /usr/local/bin/ngrok
       
             - name: Start ngrok Tunnel
               run: |
@@ -49,6 +44,3 @@ jobs:
 
             - name: Run Docker-Compose
               run: docker-compose up -d
-            
-            # - name: Build docker image drom Dockerfile
-            #   run: docker build -t ujwalbudha/myrepo-001 .
