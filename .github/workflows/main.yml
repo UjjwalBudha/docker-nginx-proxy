@@ -22,7 +22,7 @@ jobs:
               uses: docker/setup-buildx-action@v2
 
             - name: Login Docker
-              run: echo "{{ DOCKER_PASSWORD }}" | docker login -u ujwalbudha --password-stdin
+              run: echo {{ DOCKER_PASSWORD }} | docker login -u ujwalbudha --password-stdin
             
             - name: Build docker image drom Dockerfile
               run: docker build -t ujwalbudha/myrepo-001 .
