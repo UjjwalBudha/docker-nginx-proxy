@@ -37,7 +37,7 @@ jobs:
       
             - name: Start ngrok Tunnel
               run: |
-                ./ngrok http 8081 &
+                ngrok http 8081 &
 
             - name: Run Docker-Compose
               run: docker-compose up -d
